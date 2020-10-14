@@ -8,46 +8,18 @@ import produce from "immer";
 import { getType } from "typesafe-actions";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
-import { RegistrationValues, User } from "./types";
-import * as Faker from "faker";
-import { format } from "date-fns";
-
-function generateUsers() {
-  let users = [];
-
-  for (let id = 1; id <= 50; id++) {
-    let avatar = Faker.random.image();
-    let id = Faker.random.uuid();
-    let firstName = Faker.name.firstName();
-    let lastName = Faker.name.lastName();
-    let email = Faker.internet.email();
-    let dateOfBirth = format(Faker.date.past(), "dd/LL/Y");
-
-    users.push({
-      id,
-      avatar,
-      firstName,
-      lastName,
-      dateOfBirth,
-      email,
-    });
-  }
-
-  return users;
-}
+import { RegistrationValues } from "./types";
 
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ["activeProfile", "mode", "userData"],
+  blacklist: ["activeProfile", "mode"],
 };
 
 const initialState = () => ({
   mode: "Sign In" as "Sign In" | "Sign Up",
   registeredUsers: [] as Exclude<RegistrationValues, "confirmPassword">[],
   activeUser: undefined as undefined | string,
-  userData: generateUsers() as User[],
-  activeProfile: undefined as undefined | string,
 });
 
 export type State = Readonly<ReturnType<typeof initialState>>;
@@ -84,21 +56,6 @@ export const rootReducer: Reducer<State, Actions> = (
         break;
       case getType(actions.signUpModeButtonClicked):
         draft.mode = "Sign Up";
-        break;
-      case getType(actions.activeProfileClosed):
-        draft.activeProfile = undefined;
-        break;
-      case getType(actions.viewProfileClicked):
-        draft.activeProfile = action.payload;
-        break;
-
-      case getType(actions.profileDeleted):
-        if (draft.activeProfile === action.payload)
-          draft.activeProfile = undefined;
-
-        draft.userData = [
-          ...draft.userData.filter((data) => data.id !== action.payload),
-        ];
         break;
     }
   });
