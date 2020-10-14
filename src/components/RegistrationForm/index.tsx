@@ -1,5 +1,4 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import {
@@ -11,8 +10,6 @@ import {
   ErrorText,
   IconContainer,
 } from "./style";
-import { actions } from "../../store/actions";
-import { RegistrationValues } from "../../store/types";
 import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 
 const Schema = Yup.object().shape({
@@ -34,12 +31,9 @@ const Schema = Yup.object().shape({
 });
 
 export const RegistrationForm = () => {
-  const dispatch = useDispatch();
-  const handleSignup = (values: Partial<RegistrationValues>) => {
-    dispatch(actions.registerUser(values));
-  };
+  const handleSignup = (values: any) => void {};
 
-  const initialValues: Partial<RegistrationValues> = {
+  const initialValues: any = {
     firstName: "",
     lastName: "",
     email: "",
