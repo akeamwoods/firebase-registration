@@ -15,7 +15,7 @@ export const LoginHandler = () => {
     }
   }, [user, history]);
 
-  return (
+  return !user ? (
     <Wrapper>{mode === "Sign Up" ? <CreateAccount /> : <SignIn />}</Wrapper>
-  );
+  ) : null;
 };

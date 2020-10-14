@@ -13,12 +13,13 @@ import { User } from "./types";
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ["activeProfile", "mode"],
+  blacklist: ["user", "mode"],
 };
 
 const initialState = () => ({
   mode: "Sign In" as "Sign In" | "Sign Up",
   user: undefined as undefined | User,
+  loading: false,
 });
 
 export type State = Readonly<ReturnType<typeof initialState>>;
@@ -35,8 +36,12 @@ export const rootReducer: Reducer<State, Actions> = (
       case getType(actions.signUpButtonClicked):
         draft.mode = "Sign Up";
         break;
+      case getType(actions.loginButtonClicked):
+        draft.loading = true;
+        break;
       case getType(actions.userLogin):
         draft.user = action.payload;
+        draft.loading = false;
         break;
       case getType(actions.logoutButtonClicked):
       case getType(actions.userLogout):
