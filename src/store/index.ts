@@ -8,6 +8,7 @@ import produce from "immer";
 import { getType } from "typesafe-actions";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
+import { User } from "./types";
 
 const persistConfig = {
   key: "root",
@@ -17,6 +18,7 @@ const persistConfig = {
 
 const initialState = () => ({
   mode: "Sign In" as "Sign In" | "Sign Up",
+  user: undefined as undefined | User,
 });
 
 export type State = Readonly<ReturnType<typeof initialState>>;
@@ -27,7 +29,12 @@ export const rootReducer: Reducer<State, Actions> = (
 ) =>
   produce(state, (draft) => {
     switch (action.type) {
-      case getType(actions.registerUser):
+      case getType(actions.userLogin):
+        draft.user = action.payload;
+        break;
+      case getType(actions.logoutButtonClicked):
+      case getType(actions.userLogout):
+        draft.user = undefined;
         break;
     }
   });

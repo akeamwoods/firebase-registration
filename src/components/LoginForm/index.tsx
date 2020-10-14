@@ -3,6 +3,8 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { Form, Input, Button, ErrorText, IconContainer } from "./style";
 import { FaEnvelope, FaLock } from "react-icons/fa";
+import { actions } from "../../store/actions";
+import { useDispatch } from "react-redux";
 
 const Schema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required"),
@@ -12,6 +14,7 @@ const Schema = Yup.object().shape({
 });
 
 export const LoginForm = () => {
+  const dispatch = useDispatch();
   const initialValues: { email: string; password: string } = {
     email: "",
     password: "",
@@ -19,7 +22,9 @@ export const LoginForm = () => {
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={(values) => {}}
+      onSubmit={(values) => {
+        dispatch(actions.loginButtonClicked(values));
+      }}
       validationSchema={Schema}
     >
       {({ errors, touched }) => (
