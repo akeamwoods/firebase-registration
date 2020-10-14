@@ -8,10 +8,14 @@ const loginButtonClicked = createAction("login button clicked")<{
 const logoutButtonClicked = createAction("logout button clicked")();
 const userLogin = createAction("user logged in")<User>();
 const userLogout = createAction("user logged out")();
-const registerUser = createAction("user registered")();
+const signUpButtonClicked = createAction("sign up button clicked")();
+const createAccountButtonClicked = createAction(
+  "create account button clicked"
+)();
 
 export const actions = {
-  registerUser,
+  createAccountButtonClicked,
+  signUpButtonClicked,
   loginButtonClicked,
   logoutButtonClicked,
   userLogin,

@@ -5,10 +5,5 @@ import { actions } from "./actions";
 import { registrationSaga } from "./saga";
 
 export function* rootSaga() {
-  yield all([
-    loginWatcher(),
-    authChannelWatcher(),
-    logoutWatcher(),
-    takeLatest(getType(actions.registerUser), registrationSaga),
-  ]);
+  yield all([loginWatcher(), authChannelWatcher(), logoutWatcher()]);
 }

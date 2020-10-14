@@ -29,6 +29,12 @@ export const rootReducer: Reducer<State, Actions> = (
 ) =>
   produce(state, (draft) => {
     switch (action.type) {
+      case getType(actions.createAccountButtonClicked):
+        draft.mode = "Sign In";
+        break;
+      case getType(actions.signUpButtonClicked):
+        draft.mode = "Sign Up";
+        break;
       case getType(actions.userLogin):
         draft.user = action.payload;
         break;

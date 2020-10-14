@@ -36,7 +36,6 @@ export function* authChannelWatcher() {
   const authChannel = yield subscribeToAuth();
   while (true) {
     const user = yield take(authChannel);
-    console.log("auth chan", user);
     if (user)
       yield put(
         actions.userLogin({
