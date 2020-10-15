@@ -1,7 +1,12 @@
 import { actions } from "./actions";
 import { v4 as uuidv4 } from "uuid";
 import { take, put, call } from "redux-saga/effects";
-import { subscribeToAuth, login, logout } from "./../firebase";
+import {
+  subscribeToAuth,
+  login,
+  logout,
+  loginWithFacebook,
+} from "./../firebase";
 
 export function* registrationSaga({ payload }) {
   try {
@@ -9,6 +14,16 @@ export function* registrationSaga({ payload }) {
     yield put(actions.userRegistered({ ...payload, id: uuidv4() }));
   } catch (err) {
     console.log(err);
+  }
+}
+
+export function* loginWithFacebookWatcher() {
+  while (true) {
+    try {
+      yield call(loginWithFacebook);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 

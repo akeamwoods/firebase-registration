@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { LoginForm } from "../../components/LoginForm";
+import { SocialMediaLogin } from "../../components/SocialMediaLogin";
 import { actions } from "../../store/actions";
 import {
   SectionWrapper,
@@ -22,6 +23,7 @@ export const SignIn = () => {
       </SubContainer>
       <MainContainer>
         <h1>Sign In</h1>
+        <SocialMediaLogin />
         <LoginForm />
       </MainContainer>
     </SectionWrapper>
