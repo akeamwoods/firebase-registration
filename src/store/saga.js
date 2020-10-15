@@ -18,12 +18,10 @@ export function* registrationSaga({ payload }) {
 }
 
 export function* loginWithFacebookWatcher() {
-  while (true) {
-    try {
-      yield call(loginWithFacebook);
-    } catch (error) {
-      console.log(error);
-    }
+  try {
+    yield call(loginWithFacebook);
+  } catch (error) {
+    console.log(error);
   }
 }
 
