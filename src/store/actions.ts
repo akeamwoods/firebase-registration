@@ -15,6 +15,10 @@ const createAccountButtonClicked = createAction(
 const loginWithFacebookButtonClicked = createAction(
   "login with facebook button clicked"
 )();
+const registrationButtonClicked = createAction("registration button clicked")<{
+  email: string;
+  password: string;
+}>();
 
 export const actions = {
   createAccountButtonClicked,
@@ -24,6 +28,7 @@ export const actions = {
   userLogin,
   userLogout,
   loginWithFacebookButtonClicked,
+  registrationButtonClicked,
 };
 
 export type Actions = ActionType<typeof actions>;

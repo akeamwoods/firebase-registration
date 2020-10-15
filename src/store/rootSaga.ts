@@ -6,6 +6,7 @@ import {
   logoutWatcher,
   authChannelWatcher,
   loginWithFacebookWatcher,
+  registrationWatcher,
 } from "./saga";
 
 export function* rootSaga() {
@@ -17,5 +18,6 @@ export function* rootSaga() {
       getType(actions.loginWithFacebookButtonClicked),
       loginWithFacebookWatcher
     ),
+    registrationWatcher(),
   ]);
 }

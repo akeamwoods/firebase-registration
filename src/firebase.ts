@@ -23,6 +23,13 @@ export const login = (email: string, password: string) =>
       console.log(error);
     });
 
+export const register = (email: string, password: string) =>
+  void auth
+    .createUserWithEmailAndPassword(email, password)
+    .catch(function (error: any) {
+      console.log(error);
+    });
+
 export const loginWithFacebook = () =>
   // firebase
   void auth

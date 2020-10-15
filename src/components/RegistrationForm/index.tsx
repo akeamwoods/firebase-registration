@@ -1,26 +1,12 @@
 import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import {
-  Form,
-  Input,
-  Button,
-  InputSpan,
-  ErrorWrapper,
-  ErrorText,
-  IconContainer,
-} from "./style";
-import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
+import { Form, Input, Button, ErrorText, IconContainer } from "./style";
+import { FaEnvelope, FaLock } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { actions as rootActions } from "./../../store/actions";
 
 const Schema = Yup.object().shape({
-  firstName: Yup.string()
-    .required("First name is required")
-    .min(2, "Minimum 2 characters")
-    .max(50, "Maximum 15 characters"),
-  lastName: Yup.string()
-    .required("Last name is required")
-    .min(2, "Minimum 2 characters")
-    .max(50, "Maximum 15 characters"),
   email: Yup.string().email("Invalid email").required("Email is required"),
   password: Yup.string()
     .required("Password is required")
@@ -31,11 +17,9 @@ const Schema = Yup.object().shape({
 });
 
 export const RegistrationForm = () => {
-  const handleSignup = (values: any) => void {};
+  const dispatch = useDispatch();
 
   const initialValues: any = {
-    firstName: "",
-    lastName: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -44,42 +28,17 @@ export const RegistrationForm = () => {
     <Formik
       initialValues={initialValues}
       onSubmit={(values, actions) => {
-        handleSignup(values);
+        dispatch(
+          rootActions.registrationButtonClicked({
+            email: values.email,
+            password: values.password,
+          })
+        );
       }}
       validationSchema={Schema}
     >
       {({ errors, touched }) => (
         <Form>
-          <InputSpan>
-            <ErrorWrapper>
-              {errors.firstName && touched.firstName && (
-                <ErrorText>{errors.firstName}</ErrorText>
-              )}
-              <IconContainer>
-                <FaUser />
-                <Input
-                  id="firstName"
-                  name="firstName"
-                  placeholder="First name"
-                  type="text"
-                ></Input>
-              </IconContainer>
-            </ErrorWrapper>
-            <ErrorWrapper>
-              {errors.lastName && touched.lastName && (
-                <ErrorText>{errors.lastName}</ErrorText>
-              )}
-              <IconContainer>
-                <FaUser />
-                <Input
-                  id="lastName"
-                  name="lastName"
-                  placeholder="Last name"
-                  type="text"
-                ></Input>
-              </IconContainer>
-            </ErrorWrapper>
-          </InputSpan>
           {errors.email && touched.email && (
             <ErrorText>{errors.email}</ErrorText>
           )}

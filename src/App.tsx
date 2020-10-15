@@ -8,7 +8,6 @@ import { useTypedSelector } from "./store";
 
 function App() {
   const user = useTypedSelector((state) => state.user);
-  console.log(user, user !== undefined);
   return (
     <div className="App">
       <HashRouter basename={process.env.PUBLIC_URL}>

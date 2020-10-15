@@ -23,31 +23,6 @@ export const Button = styled.button`
   border: none;
 `;
 
-export const InputSpan = styled.span`
-  display: flex;
-  flex: 1;
-  justify-content: stretch;
-  align-items: flex-end;
-  input {
-    flex: 1;
-  }
-  span:first-child {
-    margin-right: 5px;
-  }
-  span:last-child {
-    margin-left: 5px;
-  }
-`;
-
-export const ErrorWrapper = styled.span`
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  input {
-    flex: 0;
-  }
-`;
-
 export const ErrorText = styled.p`
   margin: 0;
   color: red;
