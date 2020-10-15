@@ -15,6 +15,9 @@ const createAccountButtonClicked = createAction(
 const loginWithFacebookButtonClicked = createAction(
   "login with facebook button clicked"
 )();
+const loginWithGoogleButtonClicked = createAction(
+  "login with google button clicked"
+)();
 const registrationButtonClicked = createAction("registration button clicked")<{
   email: string;
   password: string;
@@ -28,6 +31,7 @@ export const actions = {
   userLogin,
   userLogout,
   loginWithFacebookButtonClicked,
+  loginWithGoogleButtonClicked,
   registrationButtonClicked,
 };
 

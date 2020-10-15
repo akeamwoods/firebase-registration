@@ -14,7 +14,7 @@ export const SocialMediaLogin = () => {
       >
         <FaFacebook size="50" color="#4267b2" />
       </Button>
-      <Button>
+      <Button onClick={() => dispatch(actions.loginWithGoogleButtonClicked())}>
         <FcGoogle size="50" />
       </Button>
     </Wrapper>

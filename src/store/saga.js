@@ -5,6 +5,7 @@ import {
   login,
   logout,
   loginWithFacebook,
+  loginWithGoogle,
   register,
 } from "./../firebase";
 
@@ -24,6 +25,14 @@ export function* registrationWatcher() {
 export function* loginWithFacebookWatcher() {
   try {
     yield call(loginWithFacebook);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export function* loginWithGoogleWatcher() {
+  try {
+    yield call(loginWithGoogle);
   } catch (error) {
     console.log(error);
   }

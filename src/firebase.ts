@@ -38,6 +38,14 @@ export const loginWithFacebook = () =>
       console.log(error);
     });
 
+export const loginWithGoogle = () =>
+  // firebase
+  void auth
+    .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+    .catch(function (error: any) {
+      console.log(error);
+    });
+
 export const logout = () => void auth.signOut();
 
 export const subscribeToAuth = () =>
