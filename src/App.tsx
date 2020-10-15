@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, HashRouter } from "react-router-dom";
+import { Route, HashRouter, Switch } from "react-router-dom";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { SideMenu } from "./components/SideMenu";
 import { LoginHandler } from "./handlers/LoginHandler";
@@ -13,13 +13,15 @@ function App() {
     <div className="App">
       <HashRouter basename={process.env.PUBLIC_URL}>
         <SideMenu />
-        <Route exact path="/" component={LoginHandler} />
-        <PrivateRoute
-          exact
-          path="/users"
-          component={UsersHandler}
-          isAuth={user !== undefined}
-        />
+        <Switch>
+          <Route exact path="/" component={LoginHandler} />
+          <PrivateRoute
+            exact
+            path="/users"
+            component={UsersHandler}
+            isAuth={user !== undefined}
+          />
+        </Switch>
       </HashRouter>
     </div>
   );
