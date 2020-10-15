@@ -43,6 +43,9 @@ export const Button = styled.button`
   border: none;
   background: none;
   color: #fff;
+  svg {
+    margin-right: 10px;
+  }
 `;
 
 export const UsernameText = styled.p`

@@ -28,7 +28,3 @@ button {
 button:hover {
   opacity: 1;
 }
-
-button svg {
-  padding: 10px 10px 10px 0;
-}
