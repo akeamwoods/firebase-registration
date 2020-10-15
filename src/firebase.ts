@@ -16,16 +16,16 @@ firebase.initializeApp({
 
 const auth = firebase.auth();
 
-export const login = (email: string, password: string) =>
+export const register = (email: string, password: string) =>
   void auth
-    .signInWithEmailAndPassword(email, password)
+    .createUserWithEmailAndPassword(email, password)
     .catch(function (error: any) {
       console.log(error);
     });
 
-export const register = (email: string, password: string) =>
+export const login = (email: string, password: string) =>
   void auth
-    .createUserWithEmailAndPassword(email, password)
+    .signInWithEmailAndPassword(email, password)
     .catch(function (error: any) {
       console.log(error);
     });
