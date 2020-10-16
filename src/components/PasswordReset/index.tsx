@@ -25,8 +25,9 @@ export const PasswordReset = () => {
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={(values) => {
+      onSubmit={(values, { resetForm }) => {
         dispatch(actions.resetPasswordButtonClicked(values));
+        resetForm();
       }}
       validationSchema={Schema}
     >

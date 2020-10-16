@@ -54,7 +54,6 @@ export const resetPassword = (email: string) =>
     .sendPasswordResetEmail(email)
     .then(function () {
       // Password reset email sent.
-      console.log("password reset");
       store.dispatch(
         actions.alertCreated({
           id: uuidv4(),
@@ -66,7 +65,16 @@ export const resetPassword = (email: string) =>
       );
     })
     .catch(function (error: any) {
-      console.log(error);
+      // error
+      store.dispatch(
+        actions.alertCreated({
+          id: uuidv4(),
+          title: "Error",
+          message: error.message,
+          duration: undefined,
+          dismissible: true,
+        })
+      );
     });
 
 export const logout = () => void auth.signOut();
