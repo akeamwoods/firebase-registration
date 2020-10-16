@@ -22,6 +22,12 @@ const registrationButtonClicked = createAction("registration button clicked")<{
   email: string;
   password: string;
 }>();
+const forgotPasswordButtonClicked = createAction(
+  "forgot password button clicked"
+)();
+const resetPasswordButtonClicked = createAction(
+  "reset password button clicked"
+)<{ email: string }>();
 
 export const actions = {
   createAccountButtonClicked,
@@ -33,6 +39,8 @@ export const actions = {
   loginWithFacebookButtonClicked,
   loginWithGoogleButtonClicked,
   registrationButtonClicked,
+  forgotPasswordButtonClicked,
+  resetPasswordButtonClicked,
 };
 
 export type Actions = ActionType<typeof actions>;

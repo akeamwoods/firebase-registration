@@ -5,6 +5,10 @@ export const Form = styled(FormikForm)`
   display: flex;
   flex-direction: column;
   width: 100%;
+  p {
+    text-align: center;
+    cursor: pointer;
+  }
 `;
 
 export const Input = styled(FormikField)`
@@ -43,7 +47,7 @@ export const IconContainer = styled.div`
   }
 `;
 
-export const ResetPasswordButton = styled.button`
+export const BackToLoginButton = styled.button`
   border: none;
   background: none;
   padding: 20px;

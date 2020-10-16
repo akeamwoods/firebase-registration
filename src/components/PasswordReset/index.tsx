@@ -7,30 +7,26 @@ import {
   Button,
   ErrorText,
   IconContainer,
-  ResetPasswordButton,
+  BackToLoginButton,
 } from "./style";
-import { FaEnvelope, FaLock } from "react-icons/fa";
+import { FaEnvelope } from "react-icons/fa";
 import { actions } from "../../store/actions";
 import { useDispatch } from "react-redux";
 
 const Schema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required"),
-  password: Yup.string()
-    .required("Password is required")
-    .min(6, "Password must contains at least 6 characters"),
 });
 
-export const LoginForm = () => {
+export const PasswordReset = () => {
   const dispatch = useDispatch();
-  const initialValues: { email: string; password: string } = {
+  const initialValues: { email: string } = {
     email: "",
-    password: "",
   };
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={(values) => {
-        dispatch(actions.loginButtonClicked(values));
+        dispatch(actions.resetPasswordButtonClicked(values));
       }}
       validationSchema={Schema}
     >
@@ -48,25 +44,13 @@ export const LoginForm = () => {
               type="email"
             ></Input>
           </IconContainer>
-          {errors.password && touched.password && (
-            <ErrorText>{errors.password}</ErrorText>
-          )}
-          <IconContainer>
-            <FaLock />
-            <Input
-              id="password"
-              name="password"
-              placeholder="Password"
-              type="password"
-            ></Input>
-          </IconContainer>
-          <ResetPasswordButton
+          <BackToLoginButton
             type="button"
-            onClick={() => dispatch(actions.forgotPasswordButtonClicked())}
+            onClick={() => dispatch(actions.createAccountButtonClicked())}
           >
-            Forgot your password?
-          </ResetPasswordButton>
-          <Button type="submit">Sign In</Button>
+            Back to Login
+          </BackToLoginButton>
+          <Button type="submit">Reset Password</Button>
         </Form>
       )}
     </Formik>

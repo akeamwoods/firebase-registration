@@ -17,7 +17,7 @@ const persistConfig = {
 };
 
 const initialState = () => ({
-  mode: "Sign In" as "Sign In" | "Sign Up",
+  mode: "Sign In" as "Sign In" | "Sign Up" | "Forgot Password",
   user: undefined as undefined | User,
   loading: false,
 });
@@ -46,6 +46,9 @@ export const rootReducer: Reducer<State, Actions> = (
       case getType(actions.logoutButtonClicked):
       case getType(actions.userLogout):
         draft.user = undefined;
+        break;
+      case getType(actions.forgotPasswordButtonClicked):
+        draft.mode = "Forgot Password";
         break;
     }
   });

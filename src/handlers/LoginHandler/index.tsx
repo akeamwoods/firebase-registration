@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
-import { useTypedSelector } from "../../store";
-import { CreateAccount } from "./CreateAccount";
-import { Wrapper } from "./style";
-import { SignIn } from "./SignIn";
 import { useHistory } from "react-router-dom";
+import { useTypedSelector } from "../../store";
+import { Wrapper } from "./style";
+import { CreateAccount } from "./CreateAccount";
+import { SignIn } from "./SignIn";
+import { ForgotPassword } from "./ForgotPassword";
 
 export const LoginHandler = () => {
   let history = useHistory();
@@ -16,6 +17,14 @@ export const LoginHandler = () => {
   }, [user, history]);
 
   return !user ? (
-    <Wrapper>{mode === "Sign Up" ? <CreateAccount /> : <SignIn />}</Wrapper>
+    <Wrapper>
+      {mode === "Sign Up" ? (
+        <CreateAccount />
+      ) : mode === "Sign In" ? (
+        <SignIn />
+      ) : (
+        <ForgotPassword />
+      )}
+    </Wrapper>
   ) : null;
 };
