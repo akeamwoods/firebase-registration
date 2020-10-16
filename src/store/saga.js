@@ -7,6 +7,7 @@ import {
   loginWithFacebook,
   loginWithGoogle,
   register,
+  resetPassword,
 } from "./../firebase";
 
 export function* registrationWatcher() {
@@ -16,6 +17,19 @@ export function* registrationWatcher() {
     } = yield take(actions.registrationButtonClicked);
     try {
       yield call(register, email, password, confirmPassword);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+export function* resetPasswordWatcher() {
+  while (true) {
+    const {
+      payload: { email },
+    } = yield take(actions.resetPasswordButtonClicked);
+    try {
+      yield call(resetPassword, email);
     } catch (error) {
       console.log(error);
     }

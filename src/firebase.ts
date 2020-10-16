@@ -46,6 +46,11 @@ export const loginWithGoogle = () =>
       console.log(error);
     });
 
+export const resetPassword = (email: string) =>
+  void auth.sendPasswordResetEmail(email).catch(function (error: any) {
+    console.log(error);
+  });
+
 export const logout = () => void auth.signOut();
 
 export const subscribeToAuth = () =>

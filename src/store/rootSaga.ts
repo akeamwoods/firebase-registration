@@ -4,6 +4,7 @@ import { actions } from "./actions";
 import {
   loginWatcher,
   logoutWatcher,
+  resetPasswordWatcher,
   authChannelWatcher,
   loginWithFacebookWatcher,
   loginWithGoogleWatcher,
@@ -15,6 +16,7 @@ export function* rootSaga() {
     loginWatcher(),
     authChannelWatcher(),
     logoutWatcher(),
+    resetPasswordWatcher(),
     takeLatest(
       getType(actions.loginWithFacebookButtonClicked),
       loginWithFacebookWatcher
