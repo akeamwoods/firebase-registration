@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/firebase-registration/static/css/main.9ef10cde.chunk.css",
-    "main.js": "/firebase-registration/static/js/main.92ff5ce4.chunk.js",
-    "main.js.map": "/firebase-registration/static/js/main.92ff5ce4.chunk.js.map",
+    "main.js": "/firebase-registration/static/js/main.b880d508.chunk.js",
+    "main.js.map": "/firebase-registration/static/js/main.b880d508.chunk.js.map",
     "runtime-main.js": "/firebase-registration/static/js/runtime-main.bfbac246.js",
     "runtime-main.js.map": "/firebase-registration/static/js/runtime-main.bfbac246.js.map",
-    "static/js/2.0dd57f6a.chunk.js": "/firebase-registration/static/js/2.0dd57f6a.chunk.js",
-    "static/js/2.0dd57f6a.chunk.js.map": "/firebase-registration/static/js/2.0dd57f6a.chunk.js.map",
+    "static/js/2.d7db4506.chunk.js": "/firebase-registration/static/js/2.d7db4506.chunk.js",
+    "static/js/2.d7db4506.chunk.js.map": "/firebase-registration/static/js/2.d7db4506.chunk.js.map",
     "index.html": "/firebase-registration/index.html",
-    "precache-manifest.27df1f9045a7176b6d3a44cbe4fa058e.js": "/firebase-registration/precache-manifest.27df1f9045a7176b6d3a44cbe4fa058e.js",
+    "precache-manifest.55886ce026d7dcc8d5bf7def6b03d309.js": "/firebase-registration/precache-manifest.55886ce026d7dcc8d5bf7def6b03d309.js",
     "service-worker.js": "/firebase-registration/service-worker.js",
     "static/css/main.9ef10cde.chunk.css.map": "/firebase-registration/static/css/main.9ef10cde.chunk.css.map",
-    "static/js/2.0dd57f6a.chunk.js.LICENSE.txt": "/firebase-registration/static/js/2.0dd57f6a.chunk.js.LICENSE.txt"
+    "static/js/2.d7db4506.chunk.js.LICENSE.txt": "/firebase-registration/static/js/2.d7db4506.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.bfbac246.js",
-    "static/js/2.0dd57f6a.chunk.js",
+    "static/js/2.d7db4506.chunk.js",
     "static/css/main.9ef10cde.chunk.css",
-    "static/js/main.92ff5ce4.chunk.js"
+    "static/js/main.b880d508.chunk.js"
   ]
 }
