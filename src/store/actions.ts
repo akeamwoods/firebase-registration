@@ -1,5 +1,5 @@
 import { ActionType, createAction } from "typesafe-actions";
-import { User } from "./types";
+import { Alert, User } from "./types";
 
 const loginButtonClicked = createAction("login button clicked")<{
   email: string;
@@ -29,6 +29,13 @@ const resetPasswordButtonClicked = createAction(
   "reset password button clicked"
 )<{ email: string }>();
 
+const alertCreated = createAction("alert created")<Alert>();
+const alertDisplayed = createAction("alert displayed")<Alert>();
+const alertCancelButtonClicked = createAction("alert cancel button clicked")<
+  string
+>();
+const alertCleared = createAction("alert cleared")<string>();
+
 export const actions = {
   createAccountButtonClicked,
   signUpButtonClicked,
@@ -41,6 +48,10 @@ export const actions = {
   registrationButtonClicked,
   forgotPasswordButtonClicked,
   resetPasswordButtonClicked,
+  alertCreated,
+  alertDisplayed,
+  alertCancelButtonClicked,
+  alertCleared,
 };
 
 export type Actions = ActionType<typeof actions>;

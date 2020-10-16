@@ -1,4 +1,4 @@
-import { all, takeLatest } from "@redux-saga/core/effects";
+import { all, takeLatest, takeEvery } from "@redux-saga/core/effects";
 import { getType } from "typesafe-actions";
 import { actions } from "./actions";
 import {
@@ -9,6 +9,7 @@ import {
   loginWithFacebookWatcher,
   loginWithGoogleWatcher,
   registrationWatcher,
+  addAlertSaga,
 } from "./saga";
 
 export function* rootSaga() {
@@ -17,6 +18,7 @@ export function* rootSaga() {
     authChannelWatcher(),
     logoutWatcher(),
     resetPasswordWatcher(),
+    registrationWatcher(),
     takeLatest(
       getType(actions.loginWithFacebookButtonClicked),
       loginWithFacebookWatcher
@@ -25,7 +27,6 @@ export function* rootSaga() {
       getType(actions.loginWithGoogleButtonClicked),
       loginWithGoogleWatcher
     ),
-
-    registrationWatcher(),
+    takeEvery(getType(actions.alertCreated), addAlertSaga),
   ]);
 }

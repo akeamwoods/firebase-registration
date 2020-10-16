@@ -1,5 +1,5 @@
 import { actions } from "./actions";
-import { take, put, call } from "redux-saga/effects";
+import { take, put, call, race, delay } from "redux-saga/effects";
 import {
   subscribeToAuth,
   login,
@@ -84,5 +84,32 @@ export function* authChannelWatcher() {
         })
       );
     else yield put(actions.userLogout());
+  }
+}
+
+function* cancellationSaga(id) {
+  while (true) {
+    const { payload } = yield take(actions.alertCancelButtonClicked);
+    if (id === payload) return;
+  }
+}
+
+export function* addAlertSaga({ payload }) {
+  try {
+    yield put(actions.alertDisplayed(payload));
+    if (payload.duration) {
+      yield race({
+        delay: delay(payload.duration),
+        click: cancellationSaga(payload.id),
+      });
+    } else {
+      yield race({
+        click: cancellationSaga(payload.id),
+      });
+    }
+
+    yield put(actions.alertCleared(payload.id));
+  } catch (error) {
+    console.log(error);
   }
 }

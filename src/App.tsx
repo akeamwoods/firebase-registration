@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, HashRouter, Switch } from "react-router-dom";
+import { NotificationContainer } from "./components/Alert/container";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { SideMenu } from "./components/SideMenu";
 import { LoginHandler } from "./handlers/LoginHandler";
@@ -10,6 +11,7 @@ function App() {
   const user = useTypedSelector((state) => state.user);
   return (
     <div className="App">
+      <NotificationContainer />
       <HashRouter basename={process.env.PUBLIC_URL}>
         <SideMenu />
         <Switch>

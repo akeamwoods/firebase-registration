@@ -2,6 +2,9 @@ import * as firebase from "firebase";
 import "firebase/auth";
 import "firebase/firestore";
 import { eventChannel } from "redux-saga";
+import { actions } from "./store/actions";
+import { v4 as uuidv4 } from "uuid";
+import { store } from "./store";
 
 firebase.initializeApp({
   apiKey: process.env.REACT_APP_API_KEY,
@@ -47,9 +50,24 @@ export const loginWithGoogle = () =>
     });
 
 export const resetPassword = (email: string) =>
-  void auth.sendPasswordResetEmail(email).catch(function (error: any) {
-    console.log(error);
-  });
+  void auth
+    .sendPasswordResetEmail(email)
+    .then(function () {
+      // Password reset email sent.
+      console.log("password reset");
+      store.dispatch(
+        actions.alertCreated({
+          id: uuidv4(),
+          title: "Password Reset",
+          message: `We've sent a password reset email to ${email}. Please check your inbox.`,
+          duration: undefined,
+          dismissible: true,
+        })
+      );
+    })
+    .catch(function (error: any) {
+      console.log(error);
+    });
 
 export const logout = () => void auth.signOut();
 

@@ -8,18 +8,19 @@ import produce from "immer";
 import { getType } from "typesafe-actions";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
-import { User } from "./types";
+import { Alert, User } from "./types";
 
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ["user", "mode"],
+  blacklist: ["user", "mode", "alerts", "loading"],
 };
 
 const initialState = () => ({
   mode: "Sign In" as "Sign In" | "Sign Up" | "Forgot Password",
   user: undefined as undefined | User,
   loading: false,
+  alerts: [] as Alert[],
 });
 
 export type State = Readonly<ReturnType<typeof initialState>>;
@@ -49,6 +50,14 @@ export const rootReducer: Reducer<State, Actions> = (
         break;
       case getType(actions.forgotPasswordButtonClicked):
         draft.mode = "Forgot Password";
+        break;
+      case getType(actions.alertDisplayed):
+        draft.alerts = [...draft.alerts, action.payload];
+        break;
+      case getType(actions.alertCleared):
+        draft.alerts = draft.alerts.filter(
+          (alert) => alert.id !== action.payload
+        );
         break;
     }
   });
