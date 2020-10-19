@@ -10,6 +10,9 @@ export const Wrapper = styled.div`
 export const SectionWrapper = styled.div`
   display: flex;
   flex: 1;
+  @media only screen and (max-width: 768px) {
+    flex-direction: column-reverse;
+  }
 `;
 
 export const MainContainer = styled.div`
@@ -40,6 +43,9 @@ export const SubContainer = styled.div`
   }
   button {
     padding: 15px 30px;
+  }
+  @media only screen and (max-width: 768px) {
+    width: auto;
   }
 `;
 
