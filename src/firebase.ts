@@ -23,14 +23,30 @@ export const register = (email: string, password: string) =>
   void auth
     .createUserWithEmailAndPassword(email, password)
     .catch(function (error: any) {
-      console.log(error);
+      store.dispatch(
+        actions.alertCreated({
+          id: uuidv4(),
+          title: "Error",
+          message: error.message,
+          duration: undefined,
+          dismissible: true,
+        })
+      );
     });
 
 export const login = (email: string, password: string) =>
   void auth
     .signInWithEmailAndPassword(email, password)
     .catch(function (error: any) {
-      console.log(error);
+      store.dispatch(
+        actions.alertCreated({
+          id: uuidv4(),
+          title: "Error",
+          message: error.message,
+          duration: undefined,
+          dismissible: true,
+        })
+      );
     });
 
 export const loginWithFacebook = () =>
@@ -38,7 +54,15 @@ export const loginWithFacebook = () =>
   void auth
     .signInWithPopup(new firebase.auth.FacebookAuthProvider())
     .catch(function (error: any) {
-      console.log(error);
+      store.dispatch(
+        actions.alertCreated({
+          id: uuidv4(),
+          title: "Error",
+          message: error.message,
+          duration: undefined,
+          dismissible: true,
+        })
+      );
     });
 
 export const loginWithGoogle = () =>
@@ -46,7 +70,15 @@ export const loginWithGoogle = () =>
   void auth
     .signInWithPopup(new firebase.auth.GoogleAuthProvider())
     .catch(function (error: any) {
-      console.log(error);
+      store.dispatch(
+        actions.alertCreated({
+          id: uuidv4(),
+          title: "Error",
+          message: error.message,
+          duration: undefined,
+          dismissible: true,
+        })
+      );
     });
 
 export const resetPassword = (email: string) =>

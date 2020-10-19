@@ -8,7 +8,7 @@ export const AlertBox = styled.div`
   right: 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
 `;
 
 export const NotificationWrapper = styled(animated.div)`
