@@ -7,5 +7,4 @@ export const Wrapper = styled.div`
   overflow: auto;
   padding: 30px;
   overflow: hidden;
-  /* padding: 30px 20px; */
 `;

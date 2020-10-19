@@ -8,6 +8,7 @@ import {
   loginWithGoogle,
   register,
   resetPassword,
+  getUserInfo,
 } from "./../firebase";
 
 export function* registrationWatcher() {
@@ -112,4 +113,12 @@ export function* addAlertSaga({ payload }) {
   } catch (error) {
     console.log(error);
   }
+}
+
+export function* getProfileSaga({ payload: { id } }) {
+  try {
+    if (id) {
+      yield call(getUserInfo(id));
+    }
+  } catch (error) {}
 }

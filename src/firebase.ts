@@ -18,6 +18,7 @@ firebase.initializeApp({
 });
 
 const auth = firebase.auth();
+const db = firebase.firestore();
 
 export const register = (email: string, password: string) =>
   void auth
@@ -120,3 +121,13 @@ export const subscribeToAuth = () =>
       console.log("destroy chan auth");
     };
   });
+
+export const getUserInfo = async (id: string) => {
+  const userRef = db.collection("users").doc(id);
+  const doc = await userRef.get();
+  if (!doc.exists) {
+    console.log("document not found");
+  } else {
+    console.log("Document data:", doc.data());
+  }
+};

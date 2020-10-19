@@ -10,6 +10,7 @@ import {
   loginWithGoogleWatcher,
   registrationWatcher,
   addAlertSaga,
+  getProfileSaga,
 } from "./saga";
 
 export function* rootSaga() {
@@ -28,5 +29,6 @@ export function* rootSaga() {
       loginWithGoogleWatcher
     ),
     takeEvery(getType(actions.alertCreated), addAlertSaga),
+    takeEvery(getType(actions.userLogin), getProfileSaga),
   ]);
 }

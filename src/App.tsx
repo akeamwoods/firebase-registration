@@ -4,11 +4,13 @@ import { NotificationContainer } from "./components/Alert/container";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { SideMenu } from "./components/SideMenu";
 import { LoginHandler } from "./handlers/LoginHandler";
-import { UsersHandler } from "./handlers/UsersHandler";
+import { HomeHandler } from "./handlers/HomeHandler";
+import { ProfileHandler } from "./handlers/ProfileHandler";
 import { useTypedSelector } from "./store";
 
 function App() {
   const user = useTypedSelector((state) => state.user);
+
   return (
     <div className="App">
       <NotificationContainer />
@@ -18,8 +20,14 @@ function App() {
           <Route exact path="/" component={LoginHandler} />
           <PrivateRoute
             exact
-            path="/users"
-            component={UsersHandler}
+            path="/home"
+            component={HomeHandler}
+            isAuth={user !== undefined}
+          />
+          <PrivateRoute
+            exact
+            path="/profile"
+            component={ProfileHandler}
             isAuth={user !== undefined}
           />
         </Switch>

@@ -12,7 +12,7 @@ export const LoginHandler = () => {
   const user = useTypedSelector((state) => state.user);
   useEffect(() => {
     if (user) {
-      history.push("/users");
+      history.push("/home");
     }
   }, [user, history]);
 
