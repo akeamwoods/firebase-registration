@@ -8,12 +8,12 @@ import produce from "immer";
 import { getType } from "typesafe-actions";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
-import { Alert, User } from "./types";
+import { Alert, User, UserProfile } from "./types";
 
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ["user", "mode", "alerts", "loading"],
+  blacklist: ["user", "mode", "alerts", "loading", "userProfile"],
 };
 
 const initialState = () => ({
@@ -21,6 +21,8 @@ const initialState = () => ({
   user: undefined as undefined | User,
   loading: false,
   alerts: [] as Alert[],
+  userProfile: undefined as undefined | UserProfile,
+  showProfileCreation: false,
 });
 
 export type State = Readonly<ReturnType<typeof initialState>>;
@@ -58,6 +60,12 @@ export const rootReducer: Reducer<State, Actions> = (
         draft.alerts = draft.alerts.filter(
           (alert) => alert.id !== action.payload
         );
+        break;
+      case getType(actions.userProfileFetched):
+        draft.userProfile = action.payload;
+        break;
+      case getType(actions.showProfileCreationHandler):
+        draft.showProfileCreation = true;
         break;
     }
   });

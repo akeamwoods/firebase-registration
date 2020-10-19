@@ -10,3 +10,9 @@ export type Alert = {
   duration: number | undefined;
   dismissible: boolean;
 };
+
+export type UserProfile = {
+  name: string;
+  img: string;
+  dateOfBirth: string;
+};

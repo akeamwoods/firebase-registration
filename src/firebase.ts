@@ -5,6 +5,7 @@ import { eventChannel } from "redux-saga";
 import { actions } from "./store/actions";
 import { v4 as uuidv4 } from "uuid";
 import { store } from "./store";
+import { UserProfile } from "./store/types";
 
 firebase.initializeApp({
   apiKey: process.env.REACT_APP_API_KEY,
@@ -126,8 +127,12 @@ export const getUserInfo = async (id: string) => {
   const userRef = db.collection("users").doc(id);
   const doc = await userRef.get();
   if (!doc.exists) {
-    console.log("document not found");
+    store.dispatch(actions.showProfileCreationHandler());
   } else {
     console.log("Document data:", doc.data());
+    const data = doc.data();
+    if (data) {
+      store.dispatch(actions.userProfileFetched(data as UserProfile));
+    }
   }
 };
