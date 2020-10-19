@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/firebase-registration/static/css/main.9ef10cde.chunk.css",
-    "main.js": "/firebase-registration/static/js/main.9e9ea308.chunk.js",
-    "main.js.map": "/firebase-registration/static/js/main.9e9ea308.chunk.js.map",
+    "main.js": "/firebase-registration/static/js/main.965a072b.chunk.js",
+    "main.js.map": "/firebase-registration/static/js/main.965a072b.chunk.js.map",
     "runtime-main.js": "/firebase-registration/static/js/runtime-main.bfbac246.js",
     "runtime-main.js.map": "/firebase-registration/static/js/runtime-main.bfbac246.js.map",
     "static/js/2.d7db4506.chunk.js": "/firebase-registration/static/js/2.d7db4506.chunk.js",
     "static/js/2.d7db4506.chunk.js.map": "/firebase-registration/static/js/2.d7db4506.chunk.js.map",
     "index.html": "/firebase-registration/index.html",
-    "precache-manifest.1e6d9fb9731c54c6c2de9ad1f39929fa.js": "/firebase-registration/precache-manifest.1e6d9fb9731c54c6c2de9ad1f39929fa.js",
+    "precache-manifest.312acd36ae2b219b5d732cc3ad47b870.js": "/firebase-registration/precache-manifest.312acd36ae2b219b5d732cc3ad47b870.js",
     "service-worker.js": "/firebase-registration/service-worker.js",
     "static/css/main.9ef10cde.chunk.css.map": "/firebase-registration/static/css/main.9ef10cde.chunk.css.map",
     "static/js/2.d7db4506.chunk.js.LICENSE.txt": "/firebase-registration/static/js/2.d7db4506.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.bfbac246.js",
     "static/js/2.d7db4506.chunk.js",
     "static/css/main.9ef10cde.chunk.css",
-    "static/js/main.9e9ea308.chunk.js"
+    "static/js/main.965a072b.chunk.js"
   ]
 }
