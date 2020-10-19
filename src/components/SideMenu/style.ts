@@ -51,3 +51,9 @@ export const Button = styled.button`
 export const UsernameText = styled.p`
   margin-top: 10px;
 `;
+
+export const ProfileSpan = styled.span`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
