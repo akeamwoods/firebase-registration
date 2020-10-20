@@ -68,6 +68,8 @@ export const loginWithFacebook = () =>
           if (!doc.exists) {
             db.collection("users").doc(id).set(profile);
             store.dispatch(actions.userProfileFetched(profile as UserProfile));
+          } else {
+            getUserInfo(id);
           }
         })
       }
