@@ -13,7 +13,7 @@ import { Alert, User, UserProfile } from "./types";
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ["user", "mode", "alerts", "loading", "userProfile"],
+  blacklist: ["user", "mode", "alerts", "loading", "userProfile", "showProfileCreation"],
 };
 
 const initialState = () => ({

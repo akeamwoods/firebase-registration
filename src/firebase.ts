@@ -52,9 +52,17 @@ export const login = (email: string, password: string) =>
     });
 
 export const loginWithFacebook = () =>
-  // firebase
   void auth
-    .signInWithPopup(new firebase.auth.FacebookAuthProvider())
+    .signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(function(result) {
+      var user = result.user;
+      if(user){
+        const id = user.uid;
+        const profile = {name:user.displayName!,img:user.photoURL!}
+        db.collection('users').doc(id).get().then(doc => {
+          if (!doc.exists) db.collection("users").doc(id).set(profile)
+        })
+      }
+    })
     .catch(function (error: any) {
       store.dispatch(
         actions.alertCreated({

@@ -12,7 +12,7 @@ export type Alert = {
 };
 
 export type UserProfile = {
-  name: string;
-  img: string;
-  dateOfBirth: string;
+  name?: string;
+  img?: string;
+  dateOfBirth?: string;
 };

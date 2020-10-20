@@ -8,7 +8,6 @@ export const HomeHandler = () => {
   const showProfileCreationPage = useTypedSelector(
     (state) => state.showProfileCreation
   );
-
   return (
     <Wrapper>{showProfileCreationPage && <ProfileCreationHandler />}</Wrapper>
   );
