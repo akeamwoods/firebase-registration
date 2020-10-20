@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, HashRouter, Switch } from "react-router-dom";
+import { Route, HashRouter, Switch, Redirect } from "react-router-dom";
 import { NotificationContainer } from "./components/Alert/container";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { SideMenu } from "./components/SideMenu";
@@ -30,6 +30,7 @@ function App() {
             component={ProfileHandler}
             isAuth={user !== undefined}
           />
+          {user === undefined && <Redirect to={"/"} />}
         </Switch>
       </HashRouter>
     </div>
