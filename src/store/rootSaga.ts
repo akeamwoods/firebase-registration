@@ -10,7 +10,7 @@ import {
   loginWithGoogleWatcher,
   registrationWatcher,
   addAlertSaga,
-  getProfileSaga,
+  getProfileSaga
 } from "./saga";
 
 export function* rootSaga() {

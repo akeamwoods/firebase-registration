@@ -23,7 +23,10 @@ const db = firebase.firestore();
 
 export const register = (email: string, password: string) =>
   void auth
-    .createUserWithEmailAndPassword(email, password)
+    .createUserWithEmailAndPassword(email, password).then(() => {
+      const id = auth.currentUser?.uid;
+      if (id) getUserInfo(id);
+    })
     .catch(function (error: any) {
       store.dispatch(
         actions.alertCreated({
@@ -38,7 +41,10 @@ export const register = (email: string, password: string) =>
 
 export const login = (email: string, password: string) =>
   void auth
-    .signInWithEmailAndPassword(email, password)
+    .signInWithEmailAndPassword(email, password).then(() => {
+      const id = auth.currentUser?.uid;
+      if (id) getUserInfo(id);
+    })
     .catch(function (error: any) {
       store.dispatch(
         actions.alertCreated({
@@ -59,7 +65,10 @@ export const loginWithFacebook = () =>
         const id = user.uid;
         const profile = {name:user.displayName!,img:user.photoURL!}
         db.collection('users').doc(id).get().then(doc => {
-          if (!doc.exists) db.collection("users").doc(id).set(profile)
+          if (!doc.exists) {
+            db.collection("users").doc(id).set(profile);
+            store.dispatch(actions.userProfileFetched(profile as UserProfile));
+          }
         })
       }
     })
@@ -131,13 +140,15 @@ export const subscribeToAuth = () =>
     };
   });
 
+
 export const getUserInfo = async (id: string) => {
+  const state = store.getState();
+  const profile = state.userProfile;
   const userRef = db.collection("users").doc(id);
   const doc = await userRef.get();
-  if (!doc.exists) {
+  if (!doc.exists && !profile) {
     store.dispatch(actions.showProfileCreationHandler());
   } else {
-    console.log("Document data:", doc.data());
     const data = doc.data();
     if (data) {
       store.dispatch(actions.userProfileFetched(data as UserProfile));
