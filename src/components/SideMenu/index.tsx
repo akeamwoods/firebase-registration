@@ -10,9 +10,6 @@ export const SideMenu = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const isLoggedIn = location.pathname !== "/";
-  const handleLogout = () => {
-    dispatch(actions.logoutButtonClicked());
-  };
   return isLoggedIn ? (
     <Wrapper>
       <ProfileInfo />
@@ -22,7 +19,7 @@ export const SideMenu = () => {
           Home
         </Link>
       </NavLinks>
-      <Button onClick={handleLogout}>
+      <Button onClick={() => dispatch(actions.logoutButtonClicked())}>
         <FaLock /> Logout
       </Button>
     </Wrapper>
