@@ -4,15 +4,9 @@ import { NavLink } from "react-router-dom";
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background: Yellow;
   padding: 30px;
   justify-content: space-between;
-  background: #55b6a8;
-  p {
-    color: #fff;
-    margin: 0;
-    font-weight: 400;
-  }
+  background: #fff;
   align-items: center;
   box-shadow: 0px 22px 24px 0px rgba(46, 51, 51, 0.07);
 `;
@@ -24,7 +18,7 @@ export const NavLinks = styled.nav`
 
 export const Link = styled(NavLink)`
   text-decoration: none;
-  color: #fff;
+  color: #000;
   padding: 20px;
   font-weight: 0;
   opacity: 0.6;
@@ -42,14 +36,14 @@ export const Button = styled.button`
   padding: 10px;
   border: none;
   background: none;
-  color: #fff;
+  color: #000;
   svg {
     margin-right: 10px;
   }
 `;
 
 export const UsernameText = styled.p`
-  margin-top: 10px;
+  margin-top: 5px;
 `;
 
 export const ProfileSpan = styled.span`
