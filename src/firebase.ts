@@ -89,7 +89,21 @@ export const loginWithFacebook = () =>
 export const loginWithGoogle = () =>
   // firebase
   void auth
-    .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+    .signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(function(result) {
+      var user = result.user;
+      if(user){
+        const id = user.uid;
+        const profile = {name:user.displayName!,img:user.photoURL!}
+        db.collection('users').doc(id).get().then(doc => {
+          if (!doc.exists) {
+            db.collection("users").doc(id).set(profile);
+            store.dispatch(actions.userProfileFetched(profile as UserProfile));
+          } else {
+            getUserInfo(id);
+          }
+        })
+      }
+    })
     .catch(function (error: any) {
       store.dispatch(
         actions.alertCreated({
