@@ -1,13 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Wrapper } from "./style";
+import { ProfileCreation } from "../../components/ProfileCreation";
+import { Wrapper, Container } from "./style";
 
 export const ProfileCreationHandler = () => {
   return ReactDOM.createPortal(
     <Wrapper>
-      <input placeholder="First Name"></input>
-      <input placeholder="Last Name"></input>
-      <input placeholder="Date Of Birth"></input>
+      <Container>
+        <ProfileCreation />
+      </Container>
     </Wrapper>,
     document.body
   );
