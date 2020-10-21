@@ -87,7 +87,6 @@ export const loginWithFacebook = () =>
     });
 
 export const loginWithGoogle = () =>
-  // firebase
   void auth
     .signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(function(result) {
       var user = result.user;
