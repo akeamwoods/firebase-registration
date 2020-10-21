@@ -13,7 +13,7 @@ import { Alert, User, UserProfile } from "./types";
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ["user", "mode", "alerts", "loading", "userProfile", "showProfileCreation"],
+  blacklist: ["user", "mode", "alerts", "loading", "showProfileCreation"],
 };
 
 const initialState = () => ({
@@ -49,6 +49,7 @@ export const rootReducer: Reducer<State, Actions> = (
       case getType(actions.logoutButtonClicked):
       case getType(actions.userLogout):
         draft.user = undefined;
+        draft.userProfile = undefined;
         break;
       case getType(actions.forgotPasswordButtonClicked):
         draft.mode = "Forgot Password";
