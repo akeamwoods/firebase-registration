@@ -8,6 +8,7 @@ export const ProfileInfo = () => {
   return (
     <ProfileSpan>
       <Avatar
+        circle={true}
         img={
           profileInfo?.img
             ? profileInfo.img

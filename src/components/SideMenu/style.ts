@@ -14,6 +14,7 @@ export const Wrapper = styled.div`
 export const NavLinks = styled.nav`
   display: flex;
   flex-direction: column;
+  flex:1;
 `;
 
 export const Link = styled(NavLink)`
