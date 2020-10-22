@@ -6,6 +6,7 @@ import { SideMenu } from "./components/SideMenu";
 import { LoginHandler } from "./handlers/LoginHandler";
 import { HomeHandler } from "./handlers/HomeHandler";
 import { useTypedSelector } from "./store";
+import { SettingsHandler } from "./handlers/SettingsHandler";
 
 function App() {
   const user = useTypedSelector((state) => state.user);
@@ -21,6 +22,12 @@ function App() {
             exact
             path="/home"
             component={HomeHandler}
+            isAuth={user !== undefined}
+          />
+          <PrivateRoute
+            exact
+            path="/settings"
+            component={SettingsHandler}
             isAuth={user !== undefined}
           />
           {user === undefined && <Redirect to={"/"} />}
