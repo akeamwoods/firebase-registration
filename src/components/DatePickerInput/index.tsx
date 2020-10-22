@@ -43,6 +43,7 @@ export const DatePickerInput = ({ ...props }) => {
             placeholder="Date Of Birth"
             type="dateOfBirth"
             autoComplete="off"
+            readOnly
           ></Input>
         </IconContainer>
       }
