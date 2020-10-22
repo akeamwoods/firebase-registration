@@ -7,7 +7,15 @@ export const Form = styled(FormikForm)`
   width: 100%;
 `;
 
-export const Input = styled(FormikField)`
+export const Field = styled(FormikField)`
+  padding: 15px 10px;
+  margin: 5px 0;
+  background: #f5f5f5;
+  border: none;
+  padding-left: 35px;
+`;
+
+export const Input = styled.input`
   padding: 15px 10px;
   margin: 5px 0;
   background: #f5f5f5;
