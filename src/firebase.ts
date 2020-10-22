@@ -20,6 +20,7 @@ firebase.initializeApp({
 
 const auth = firebase.auth();
 const db = firebase.firestore();
+const storage = firebase.storage();
 
 export const register = (email: string, password: string) =>
   void auth
@@ -170,3 +171,21 @@ export const getUserInfo = async (id: string) => {
     }
   }
 };
+
+
+export const createProfile = async (id:string, name:string, dateOfBirth:string, file:File ) => {
+  if(file){
+    storage.ref('images').child(id).put(file).then(x => {
+      x.ref.getDownloadURL().then(url => {
+        db.collection("users").doc(id).set({name, dateOfBirth, url});
+        store.dispatch(actions.userProfileFetched({name, dateOfBirth, img:url} as UserProfile))
+      })
+    })
+  } else {
+    db.collection("users").doc(id).set({name, dateOfBirth});
+    store.dispatch(actions.userProfileFetched({name, dateOfBirth} as UserProfile));
+  }
+};
+
+
+

@@ -9,6 +9,7 @@ import {
   register,
   resetPassword,
   getUserInfo,
+  createProfile,
 } from "./../firebase";
 
 export function* registrationWatcher() {
@@ -119,6 +120,16 @@ export function* getProfileSaga({ payload: { id } }) {
   try {
     if (id) {
       yield call(getUserInfo(id));
+    }
+  } catch (error) {}
+}
+
+export function* createProfileSaga({
+  payload: { id, name, dateOfBirth, file },
+}) {
+  try {
+    if (id) {
+      yield call(createProfile, id, name, dateOfBirth, file);
     }
   } catch (error) {}
 }

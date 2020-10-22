@@ -5,6 +5,9 @@ import { Form, Field, Input, Button, ErrorText, IconContainer } from "./style";
 import { FaUpload, FaUser } from "react-icons/fa";
 import { DatePickerInput } from "../DatePickerInput";
 import { Avatar } from "../Avatar";
+import { actions } from "../../store/actions";
+import { useDispatch } from "react-redux";
+import { useTypedSelector } from "../../store";
 
 const Schema = Yup.object().shape({
   name: Yup.string()
@@ -26,11 +29,21 @@ export const ProfileCreation = () => {
   };
   const [file, setFile] = useState<File | null>(null);
   const ref = createRef<HTMLInputElement>();
+  const dispatch = useDispatch();
+  const id = useTypedSelector((state) => state.user?.id);
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={(values) => {
-        //dispatch action
+        if (id)
+          dispatch(
+            actions.createProfileButtonClicked({
+              id,
+              name: values.name,
+              dateOfBirth: values.dateOfBirth,
+              file: values.file,
+            })
+          );
       }}
       validationSchema={Schema}
     >
