@@ -185,6 +185,15 @@ export const createProfile = async (id:string, name:string, dateOfBirth:string, 
     db.collection("users").doc(id).set({name, dateOfBirth});
     store.dispatch(actions.userProfileFetched({name, dateOfBirth} as UserProfile));
   }
+  store.dispatch(
+    actions.alertCreated({
+      id: uuidv4(),
+      title: "Profile Updated",
+      message: "Your profile has been successfully updated.",
+      duration: 6000,
+      dismissible: true,
+    })
+  );
 };
 
 

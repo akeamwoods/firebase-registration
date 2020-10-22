@@ -13,8 +13,10 @@ const Schema = Yup.object().shape({
   name: Yup.string()
     .max(50, "Maximum 50 characters")
     .required("Please enter your name"),
-  dateOfBirth: Yup.string().required("Please select your date of birth"),
-  file: Yup.mixed<File>().required("File is required").nullable(),
+  dateOfBirth: Yup.string()
+    .required("Please select your date of birth")
+    .required("Please enter your date of birth"),
+  file: Yup.mixed<File>().nullable(),
 });
 
 export const ProfileCreation = () => {
@@ -55,6 +57,7 @@ export const ProfileCreation = () => {
                 ? URL.createObjectURL(file)
                 : process.env.PUBLIC_URL + "/placeholder.jpg"
             }
+            size={200}
           />
           <IconContainer>
             <FaUpload />

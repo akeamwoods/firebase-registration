@@ -63,6 +63,7 @@ export const rootReducer: Reducer<State, Actions> = (
         );
         break;
       case getType(actions.userProfileFetched):
+        draft.showProfileCreation = false;
         draft.userProfile = action.payload;
         break;
       case getType(actions.showProfileCreationHandler):
