@@ -177,7 +177,7 @@ export const createProfile = async (id:string, name:string, dateOfBirth:string, 
   if(file){
     storage.ref('images').child(id).put(file).then(x => {
       x.ref.getDownloadURL().then(url => {
-        db.collection("users").doc(id).set({name, dateOfBirth, url});
+        db.collection("users").doc(id).set({name, dateOfBirth, img:url});
         store.dispatch(actions.userProfileFetched({name, dateOfBirth, img:url} as UserProfile))
       })
     })
