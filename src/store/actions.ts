@@ -39,8 +39,12 @@ const userProfileFetched = createAction("user profile fetched")<UserProfile>();
 const showProfileCreationHandler = createAction(
   "show profile creation handler"
 )();
-const createProfileButtonClicked = createAction("create profile button clicked")<{id:string, name:string, dateOfBirth:string, file:File | null}>();
-const deleteProfileButtonClicked = createAction("delte profile button clicked")();
+const createProfileButtonClicked = createAction(
+  "create profile button clicked"
+)<{ id: string; name: string; dateOfBirth: string; file: File | null }>();
+const deleteProfileButtonClicked = createAction(
+  "delte profile button clicked"
+)();
 
 export const actions = {
   createAccountButtonClicked,
@@ -61,7 +65,7 @@ export const actions = {
   userProfileFetched,
   showProfileCreationHandler,
   createProfileButtonClicked,
-  deleteProfileButtonClicked
+  deleteProfileButtonClicked,
 };
 
 export type Actions = ActionType<typeof actions>;

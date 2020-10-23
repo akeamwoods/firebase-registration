@@ -24,7 +24,8 @@ const storage = firebase.storage();
 
 export const register = (email: string, password: string) =>
   void auth
-    .createUserWithEmailAndPassword(email, password).then(() => {
+    .createUserWithEmailAndPassword(email, password)
+    .then(() => {
       const id = auth.currentUser?.uid;
       if (id) getUserInfo(id);
     })
@@ -42,7 +43,8 @@ export const register = (email: string, password: string) =>
 
 export const login = (email: string, password: string) =>
   void auth
-    .signInWithEmailAndPassword(email, password).then(() => {
+    .signInWithEmailAndPassword(email, password)
+    .then(() => {
       const id = auth.currentUser?.uid;
       if (id) getUserInfo(id);
     })
@@ -60,19 +62,25 @@ export const login = (email: string, password: string) =>
 
 export const loginWithFacebook = () =>
   void auth
-    .signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(function(result) {
+    .signInWithPopup(new firebase.auth.FacebookAuthProvider())
+    .then(function (result) {
       var user = result.user;
-      if(user){
+      if (user) {
         const id = user.uid;
-        const profile = {name:user.displayName!,img:user.photoURL!}
-        db.collection('users').doc(id).get().then(doc => {
-          if (!doc.exists) {
-            db.collection("users").doc(id).set(profile);
-            store.dispatch(actions.userProfileFetched(profile as UserProfile));
-          } else {
-            getUserInfo(id);
-          }
-        })
+        const profile = { name: user.displayName!, img: user.photoURL! };
+        db.collection("users")
+          .doc(id)
+          .get()
+          .then((doc) => {
+            if (!doc.exists) {
+              db.collection("users").doc(id).set(profile);
+              store.dispatch(
+                actions.userProfileFetched(profile as UserProfile)
+              );
+            } else {
+              getUserInfo(id);
+            }
+          });
       }
     })
     .catch(function (error: any) {
@@ -89,19 +97,25 @@ export const loginWithFacebook = () =>
 
 export const loginWithGoogle = () =>
   void auth
-    .signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(function(result) {
+    .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+    .then(function (result) {
       var user = result.user;
-      if(user){
+      if (user) {
         const id = user.uid;
-        const profile = {name:user.displayName!,img:user.photoURL!}
-        db.collection('users').doc(id).get().then(doc => {
-          if (!doc.exists) {
-            db.collection("users").doc(id).set(profile);
-            store.dispatch(actions.userProfileFetched(profile as UserProfile));
-          } else {
-            getUserInfo(id);
-          }
-        })
+        const profile = { name: user.displayName!, img: user.photoURL! };
+        db.collection("users")
+          .doc(id)
+          .get()
+          .then((doc) => {
+            if (!doc.exists) {
+              db.collection("users").doc(id).set(profile);
+              store.dispatch(
+                actions.userProfileFetched(profile as UserProfile)
+              );
+            } else {
+              getUserInfo(id);
+            }
+          });
       }
     })
     .catch(function (error: any) {
@@ -156,7 +170,6 @@ export const subscribeToAuth = () =>
     };
   });
 
-
 export const getUserInfo = async (id: string) => {
   const state = store.getState();
   const profile = state.userProfile;
@@ -172,18 +185,34 @@ export const getUserInfo = async (id: string) => {
   }
 };
 
-
-export const createProfile = async (id:string, name:string, dateOfBirth:string, file:File ) => {
-  if(file){
-    storage.ref('images').child(id).put(file).then(x => {
-      x.ref.getDownloadURL().then(url => {
-        db.collection("users").doc(id).set({name, dateOfBirth, img:url});
-        store.dispatch(actions.userProfileFetched({name, dateOfBirth, img:url} as UserProfile))
-      })
-    })
+export const createProfile = async (
+  id: string,
+  name: string,
+  dateOfBirth: string,
+  file: File
+) => {
+  if (file) {
+    storage
+      .ref("images")
+      .child(id)
+      .put(file)
+      .then((snapshot) => {
+        snapshot.ref.getDownloadURL().then((url) => {
+          db.collection("users").doc(id).set({ name, dateOfBirth, img: url });
+          store.dispatch(
+            actions.userProfileFetched({
+              name,
+              dateOfBirth,
+              img: url,
+            } as UserProfile)
+          );
+        });
+      });
   } else {
-    db.collection("users").doc(id).set({name, dateOfBirth});
-    store.dispatch(actions.userProfileFetched({name, dateOfBirth} as UserProfile));
+    db.collection("users").doc(id).set({ name, dateOfBirth });
+    store.dispatch(
+      actions.userProfileFetched({ name, dateOfBirth } as UserProfile)
+    );
   }
   store.dispatch(
     actions.alertCreated({
@@ -195,6 +224,3 @@ export const createProfile = async (id:string, name:string, dateOfBirth:string, 
     })
   );
 };
-
-
-

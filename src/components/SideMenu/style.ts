@@ -14,8 +14,8 @@ export const Wrapper = styled.div`
 export const NavLinks = styled.nav`
   display: flex;
   flex-direction: column;
-  flex:1;
-  padding:20px 0;
+  flex: 1;
+  padding: 20px 0;
 `;
 
 export const Link = styled(NavLink)`
