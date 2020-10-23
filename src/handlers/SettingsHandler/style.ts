@@ -16,6 +16,6 @@ export const Button = styled.button`
   margin-top: 5px;
   padding: 15px 10px;
   border: none;
-  display:flex;
-  align-self:flex-start;
+  display: flex;
+  align-self: flex-start;
 `;
